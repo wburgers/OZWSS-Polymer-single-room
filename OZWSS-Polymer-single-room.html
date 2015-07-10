@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../OZWSS-Polymer-device-item/OZWSS-Polymer-device-item.html">
+
+<!--
+@element OZWSS-Polymer-single-room
+@demo demo/index.html
+-->
+
+<dom-module id="OZWSS-Polymer-single-room">
+	<style>
+		:host {
+			@apply(--layout-horizontal);
+			@apply(--layout-wrap);
+		}
+	</style>
+	<template>
+		<template is="dom-repeat" items="{{Devices}}">
+			<OZWSS-Polymer-device-item device={{item}}>
+			</OZWSS-Polymer-device-item>
+		</template>
+	</template>
+</dom-module>
+
+<script>
+	Polymer({
+		is: "OZWSS-Polymer-single-room",
+		properties: {
+			Devices: {
+				type: Array,
+				value: function() { return []; },
+			},
+		},
+	});
+</script>

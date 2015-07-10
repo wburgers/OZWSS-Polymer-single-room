@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<title>OZWSS-Polymer-single-room Demo</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+		<link rel="import" href="../OZWSS-Polymer-single-room.html">
+	</head>
+	<body>
+		<OZWSS-Polymer-single-room id="single-room"></OZWSS-Polymer-single-room>
+		<script>
+			var single_room = document.getElementById('single-room');
+			single_room.Devices = JSON.parse('{"command":"ALIST","nodes":[{"ID":2,"LastSeen":"Fri 10 Jul 13:52","Location":"Kamer","Name":"Staande Lamp 1","Type":"Multilevel Power Switch","Values":{"Application Version":"1.12","Bright":"False","Dim":"False","Ignore Start Level":"True","Level":"0","Library Version":"6","Protection":"Unprotected","Protocol Version":"3.40","Start Level":"0","Switch All":"On and Off Enabled"}},{"ID":3,"LastSeen":"Fri 10 Jul 13:52","Location":"Kamer","Name":"Staande Lamp 2","Type":"Multilevel Power Switch","Values":{"Application Version":"1.12","Bright":"False","Dim":"False","Ignore Start Level":"True","Level":"0","Library Version":"6","Protection":"Unprotected","Protocol Version":"3.40","Start Level":"0","Switch All":"On and Off Enabled"}},{"ID":4,"LastSeen":"Fri 10 Jul 13:48","Location":"Kamer","Name":"Temp Sensor","Type":"Routing Multilevel Sensor","Values":{"Alarm Level":"255","Alarm Type":"1","Application Version":"1.00","Battery Level":"0","Cooling 1":"2585.5","Default Wake-up Interval":"604800","Heating 1":"-1408.1","Library Version":"6","Maximum Wake-up Interval":"15728400","Minimum Wake-up Interval":"60","Mode":"Heat","Protocol Version":"3.42","Temperature":"24.7","Wake-up Interval":"1800","Wake-up Interval Step":"60"}},{"ID":5,"LastSeen":"Fri 10 Jul 13:55","Location":"Kamer","Name":"Radiatorknop 1","Type":"Setpoint Thermostat","Values":{"Application Version":"1.01","Battery Level":"77","Day":"Sunday","Default Wake-up Interval":"300","Friday":"110","Heating 1":"14.00","Hour":"13","Library Version":"6","Maximum Wake-up Interval":"1800","Minimum Wake-up Interval":"60","Minute":"6","Monday":"61","Override Setback":"127","Override State":"None","Protection":"Unprotected","Protocol Version":"3.67","Saturday":"52","Sunday":"121","Thursday":"114","Tuesday":"116","Wake-up Interval":"900","Wake-up Interval Step":"60","Wednesday":"115"}},{"ID":6,"LastSeen":"Fri 10 Jul 13:52","Location":"Kamer","Name":"Buddha Waterpomp","Type":"Binary Power Switch","Values":{"Application Version":"1.04","Library Version":"6","Protocol Version":"2.64","Switch":"False","Switch All":"On and Off Enabled"}}]}').nodes.slice();
+		</script>
+	</body>
+</html>

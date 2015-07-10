@@ -1,0 +1,23 @@
+{
+  "name": "OZWSS-Polymer-single-room",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wburgers/OZWSS-Polymer-single-room",
+  "description": "single-room element for the OZWSS Polymer client",
+  "main": "OZWSS-Polymer-single-room.html",
+  "authors": [
+    "Willem Burgers"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~1.0.0",
+	"OZWSS-Polymer-device-item": "git://github.com/wburgers/OZWSS-Polymer-device-item#master"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
+  }
+}
