@@ -1,7 +1,11 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <link rel="import" href="../OZWSS-Polymer-device-item/OZWSS-Polymer-device-item.html">
+
+<script src="../raphael/raphael.js"></script>
+<script src="../justgage-official/justgage.js"></script>
 
 <!--
 @element OZWSS-Polymer-single-room
@@ -10,16 +14,38 @@
 
 <dom-module id="OZWSS-Polymer-single-room">
 	<style>
-		:host {
+		#temperatures {
 			@apply(--layout-horizontal);
 			@apply(--layout-wrap);
 		}
+		#deviceList {
+			@apply(--layout-horizontal);
+			@apply(--layout-wrap);
+		}
+		.gauge {
+			height: 240px;
+			width: 300px;
+			display: inline-block;
+			overflow:hidden;
+			vertical-align:top;
+			margin: auto;
+		}
 	</style>
 	<template>
-		<template is="dom-repeat" items="{{Devices}}">
-			<OZWSS-Polymer-device-item device={{item}}>
-			</OZWSS-Polymer-device-item>
-		</template>
+		<paper-material id="temperatures">
+			<div class="gauge" id="currentTemp"></div>
+			<div class="gauge" id="setpointTemp"></div>
+			<!--<div class="temp-buttons">
+				<paper-fab class="temp-button" id="PLUS" icon="add" on-tap="{{buttonTap}}"></paper-fab>
+				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="{{buttonTap}}" style="background: #5677fc;"></paper-fab>
+			</div>-->
+		</paper-material>
+		<div id="deviceList">
+			<template is="dom-repeat" items="{{Devices}}">
+				<OZWSS-Polymer-device-item device={{item}}>
+				</OZWSS-Polymer-device-item>
+			</template>
+		</div>
 	</template>
 </dom-module>
 
@@ -31,6 +57,61 @@
 				type: Array,
 				value: function() { return []; },
 			},
+			room: {
+				type: Object,
+				value: function() { return {}; },
+			},
+			roomName: {
+				type: String,
+			},
+			_currentTemp: {
+				type: Object,
+				value: function() { return {}; },
+			},
+			_setpointTemp: {
+				type: Object,
+				value: function() { return {}; },
+			},
+			_ready: {
+				type: Boolean,
+				value: false,
+			},
+		},
+		
+		observers: [
+			'_current(room.currentTemp)',
+			'_setpoint(room.currentSetpoint)'
+		],
+		
+		ready: function() {
+			this._currentTemp = new JustGage({
+				parentNode: this.$.currentTemp,
+				value: 0.0,
+				min: 10.0,
+				max: 35.0,
+				title: "Current temperature",
+				decimals: 1,
+			});
+			this._setpointTemp = new JustGage({
+				parentNode: this.$.setpointTemp,
+				value: 0.0,
+				min: 10.0,
+				max: 35.0,
+				title: "Setpoint temperature",
+				decimals: 1,
+			});
+			this._ready = true;
+        },
+		
+		_current: function (newValue,oldValue) {
+			if(this._ready == true) {
+				this._currentTemp.refresh(newValue);
+			}
+		},
+		_setpoint: function (newValue,oldValue) {
+			if(this._ready == true) {
+				this._setpointTemp.refresh(newValue);
+			}
 		},
 	});
 </script>

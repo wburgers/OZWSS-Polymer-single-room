@@ -15,7 +15,9 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#~1.0.0",
-	"OZWSS-Polymer-device-item": "git://github.com/wburgers/OZWSS-Polymer-device-item#master"
+    "paper-material": "PolymerElements/paper-material#^1.0.0",
+    "OZWSS-Polymer-device-item": "git://github.com/wburgers/OZWSS-Polymer-device-item#master",
+    "justgage-official": "*"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
