@@ -119,13 +119,17 @@
 			});
 			this._ready = true;
         },
+		reassign: function(newRoom) {
+			this.set('room.currentSetpoint', newRoom.currentSetpoint);
+			this.set('room.currentTemp', newRoom.currentTemp);
+		},
 		
-		_current: function (newValue,oldValue) {
+		_current: function (newValue) {
 			if(this._ready == true) {
 				this._currentTemp.refresh(newValue);
 			}
 		},
-		_setpoint: function (newValue,oldValue) {
+		_setpoint: function (newValue) {
 			if(this._ready == true) {
 				this._setpointTemp.refresh(newValue);
 			}
