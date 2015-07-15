@@ -1,6 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 
 <link rel="import" href="../OZWSS-Polymer-device-item/OZWSS-Polymer-device-item.html">
 
@@ -36,15 +38,24 @@
 			vertical-align:top;
 			margin: auto;
 		}
+		.temp-buttons {
+			vertical-align:top;
+			display: inline-block;
+			margin: auto;
+		}
+		.temp-button {
+			display: block;
+			margin: 43px;
+		}
 	</style>
 	<template>
 		<paper-material id="temperatures">
 			<div class="gauge" id="currentTemp"></div>
 			<div class="gauge" id="setpointTemp"></div>
-			<!--<div class="temp-buttons">
-				<paper-fab class="temp-button" id="PLUS" icon="add" on-tap="{{buttonTap}}"></paper-fab>
-				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="{{buttonTap}}" style="background: #5677fc;"></paper-fab>
-			</div>-->
+			<div class="temp-buttons">
+				<paper-fab class="temp-button" id="PLUS" icon="add" on-tap="_buttonTap"></paper-fab>
+				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="_buttonTap" style="background: #5677fc;"></paper-fab>
+			</div>
 		</paper-material>
 		<div id="deviceList">
 			<template is="dom-repeat" items="{{Devices}}">
@@ -118,6 +129,11 @@
 			if(this._ready == true) {
 				this._setpointTemp.refresh(newValue);
 			}
+		},
+		
+		_buttonTap: function(event, detail) {
+			var commandstring = "ROOM~"+event.srcElement.domHost.id+"~"+this.roomName;
+			this.fire('send-command',{command:commandstring});
 		},
 	});
 </script>
