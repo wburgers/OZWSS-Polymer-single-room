@@ -23,6 +23,10 @@
 				background: white;
 				padding: 20px;
 			}
+			#temperatures {
+				@apply(--layout-horizontal);
+				@apply(--layout-wrap);
+			}
 			.gauge {
 				height: 240px;
 				width: 300px;
@@ -40,9 +44,13 @@
 				display: block;
 				margin: 43px;
 			}
+			#deviceList {
+				@apply(--layout-horizontal);
+				@apply(--layout-wrap);
+			}
 		</style>
 
-		<paper-material id="temperatures" class="layout horizontal wrap">
+		<paper-material id="temperatures">
 			<div class="gauge" id="currentTemp"></div>
 			<div class="gauge" id="setpointTemp"></div>
 			<div class="temp-buttons">
@@ -50,7 +58,7 @@
 				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="_buttonTap" style="background: #5677fc;"></paper-fab>
 			</div>
 		</paper-material>
-		<div id="deviceList" class="layout horizontal wrap">
+		<div id="deviceList">
 			<template is="dom-repeat" items="{{Devices}}">
 				<OZWSS-Polymer-device-item device={{item}}>
 				</OZWSS-Polymer-device-item>
