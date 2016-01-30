@@ -59,8 +59,8 @@
 			</div>
 		</paper-material>
 		<div id="deviceList">
-			<template is="dom-repeat" items="{{Devices}}">
-				<OZWSS-Polymer-device-item device={{item}}>
+			<template is="dom-repeat" items="{{Devices}}" as="device" filter="{{_isInRoom(roomName)}}">
+				<OZWSS-Polymer-device-item device={{device}}>
 				</OZWSS-Polymer-device-item>
 			</template>
 		</div>
@@ -95,12 +95,12 @@
 				value: false,
 			},
 		},
-		
+
 		observers: [
 			'_current(room.currentTemp)',
 			'_setpoint(room.currentSetpoint)'
 		],
-		
+
 		ready: function() {
 			this._currentTemp = new JustGage({
 				parentNode: this.$.currentTemp,
@@ -124,7 +124,7 @@
 			this.set('room.currentSetpoint', newRoom.currentSetpoint);
 			this.set('room.currentTemp', newRoom.currentTemp);
 		},
-		
+
 		_current: function (newValue) {
 			if(this._ready == true) {
 				this._currentTemp.refresh(newValue);
@@ -135,10 +135,20 @@
 				this._setpointTemp.refresh(newValue);
 			}
 		},
-		
+
 		_buttonTap: function(event, detail) {
 			var commandstring = "ROOM~"+event.srcElement.domHost.id+"~"+this.roomName;
 			this.fire('send-command',{command:commandstring});
+		},
+
+		_isInRoom: function(roomName) {
+			if(!roomName) {
+				return null;
+			} else {
+				return function(device) {
+					return device.Location == roomName;
+				};
+			}
 		},
 	});
 </script>
