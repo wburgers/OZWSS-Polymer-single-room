@@ -54,8 +54,8 @@
 			<div class="gauge" id="currentTemp"></div>
 			<div class="gauge" id="setpointTemp"></div>
 			<div class="temp-buttons">
-				<paper-fab class="temp-button" id="PLUS" icon="add" on-tap="_buttonTap"></paper-fab>
-				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="_buttonTap" style="background: #5677fc;"></paper-fab>
+				<paper-fab class="temp-button" id="PLUS" icon="add" on-tap="_plusTap"></paper-fab>
+				<paper-fab class="temp-button" id="MINUS" icon="remove" on-tap="_minusTap" style="background: #5677fc;"></paper-fab>
 			</div>
 		</paper-material>
 		<div id="deviceList">
@@ -136,8 +136,14 @@
 			}
 		},
 
-		_buttonTap: function(event, detail) {
-			var commandstring = "ROOM~"+event.srcElement.domHost.id+"~"+this.roomName;
+		_plusTap: function(event, detail) {
+			this._buttonTap("PLUS");
+		},
+		_minusTap: function(event, detail) {
+			this._buttonTap("MINUS");
+		},
+		_buttonTap: function(plusminus) {
+			var commandstring = "ROOM~"+plusminus+"~"+this.roomName;
 			this.fire('send-command',{command:commandstring});
 		},
 
